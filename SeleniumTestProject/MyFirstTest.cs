@@ -59,5 +59,15 @@ namespace SeleniumTestProject
             driver.Close();
             driver.Quit();
         }
+        [Test]
+        public void QuantityOfOwners10Test()
+        {
+            driver.Navigate().GoToUrl("http://localhost:8080/");
+            driver.FindElement(By.CssSelector("a[href *= 'owners']")).Click();
+            driver.FindElement(By.CssSelector("button[type='submit'")).Click();
+            Assert.AreEqual(10, driver.FindElements(By.CssSelector("tr")).Count-1);
+            driver.Close();
+            driver.Quit();
+        }
     }
 }
