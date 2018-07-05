@@ -27,8 +27,13 @@ namespace SeleniumTestProject
             driver.Close();
             driver.Quit();
         }
+        [Test]
         public void MainPageIsOpenedTest()
         {
+            driver.Navigate().GoToUrl("http://localhost:8080/");
+            Assert.AreEqual("Welcome", driver.FindElement(By.CssSelector("h2")).Text);
+            driver.Close();
+            driver.Quit();
         }
         [Test]
         public void ThePageIsMainTest()
