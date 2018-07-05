@@ -13,14 +13,6 @@ namespace SeleniumTestProject
     {
         IWebDriver driver = new ChromeDriver();
         [Test]
-        public void myFirstTest()
-        {
-            driver.Navigate().GoToUrl("https://www.swtestacademy.com");
-            Assert.AreEqual("Software Test Academy", driver.Title);
-            driver.Close();
-            driver.Quit();
-        }
-        [Test]
         public void OpenMainPageTest()
         {
             driver.Navigate().GoToUrl("http://localhost:8080/");
