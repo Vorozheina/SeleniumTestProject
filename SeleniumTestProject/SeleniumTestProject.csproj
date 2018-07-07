@@ -49,14 +49,24 @@
     <Reference Include="WebDriver, Version=3.13.1.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\Selenium.WebDriver.3.13.1\lib\net45\WebDriver.dll</HintPath>
     </Reference>
+    <Reference Include="WebDriver.Support, Version=3.13.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Selenium.Support.3.13.1\lib\net45\WebDriver.Support.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="MyFirstTest.cs" />
+    <Compile Include="Pages\ErrorPage.cs" />
+    <Compile Include="Pages\HomePage.cs" />
+    <Compile Include="Pages\FindOwnersPage.cs" />
+    <Compile Include="Pages\NewOwnerPage.cs" />
+    <Compile Include="Pages\ResultOfSearchOwnerPage.cs" />
+    <Compile Include="Pages\VeterinariansPage.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>
