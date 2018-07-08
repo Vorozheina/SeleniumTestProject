@@ -16,7 +16,7 @@ namespace SeleniumTestProject
         public static IWebDriver driver { get; set; }
 
         [SetUp]
-        public void Setup()
+        public void SetUp()
         {
             driver = new ChromeDriver();
             driver.Navigate().GoToUrl("http://localhost:8080/");
@@ -90,7 +90,7 @@ namespace SeleniumTestProject
 
             //driver.Navigate().GoToUrl("http://localhost:8080/owners/11");
             driver.Navigate().Back();
-            
+
             ownerProfilePage.BtnAddNewPetClick.Click();
 
             NewPetPage newPetPage = new NewPetPage();
@@ -135,12 +135,18 @@ namespace SeleniumTestProject
 
 
             newVisitPage.FieldVisitDescriptionText.SendKeys(Description);
-            
+
             newVisitPage.BtnAddVisitClick.Click();
 
             Assert.AreEqual(Description, ownerProfilePage.TableOwnerProfile.FindElement(By.XPath(".//tr/td[2]/table/tbody/tr[1]/td[2]")).Text);
-
         }
+
+        [TearDown]
+        public void CleanUp()
+        {
+            driver.Close();
+        }
+        
 
 
 
