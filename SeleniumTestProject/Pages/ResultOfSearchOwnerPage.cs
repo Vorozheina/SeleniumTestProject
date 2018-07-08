@@ -12,5 +12,9 @@ namespace SeleniumTestProject.Pages
     {
         [FindsBy(How = How.Id, Using = "vets")]
         public IWebElement TableFindOwnerResult { get; set; }
+
+        [FindsBy(How = How.CssSelector, Using = "tr")]
+        public IList<IWebElement> TableFindOwnerResultRows { get; set; }
+                
     }
 }

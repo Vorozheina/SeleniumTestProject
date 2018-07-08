@@ -8,7 +8,10 @@ using System.Threading.Tasks;
 
 namespace SeleniumTestProject.Pages
 {
-    class ErrorPage : HomePage
+    class EditPetPage : NewPetPage
     {
+        [FindsBy(How = How.CssSelector, Using = "button[type='submit']")]
+        public IWebElement BtnEditPetClick { get; set; }
+
     }
 }

@@ -55,12 +55,14 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="MyFirstTest.cs" />
-    <Compile Include="Pages\ErrorPage.cs" />
+    <Compile Include="Pages\EditPetPage.cs" />
     <Compile Include="Pages\HomePage.cs" />
     <Compile Include="Pages\FindOwnersPage.cs" />
     <Compile Include="Pages\NewOwnerPage.cs" />
+    <Compile Include="Pages\NewPetPage.cs" />
+    <Compile Include="Pages\NewVisitPage.cs" />
+    <Compile Include="Pages\OwnerProfilePage.cs" />
     <Compile Include="Pages\ResultOfSearchOwnerPage.cs" />
-    <Compile Include="Pages\VeterinariansPage.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
