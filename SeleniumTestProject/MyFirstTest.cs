@@ -1,29 +1,24 @@
 ﻿using NUnit.Framework;
 using OpenQA.Selenium;
-using OpenQA.Selenium.Chrome;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using SeleniumTestProject.Pages;
 using OpenQA.Selenium.Support.PageObjects;
 
 namespace SeleniumTestProject
 {
-    public class MyFirstTest
+    public class MyFirstTest : Browsers
     {
-        public static IWebDriver driver { get; set; }
-
         [SetUp]
         public void SetUp()
         {
-            driver = new ChromeDriver();
-            driver.Navigate().GoToUrl("http://localhost:8080/");
+            Browsers.Init();
         }
+
         [Test]
         public void MainScenarioTest()
         {
+            IWebDriver driver = Browsers.getDriver;
+
             HomePage homePage = new HomePage();
             PageFactory.InitElements(driver, homePage);
             IWebElement webElementHomePageH2 = homePage.GetHomePageH2;
@@ -144,7 +139,7 @@ namespace SeleniumTestProject
         [TearDown]
         public void CleanUp()
         {
-            driver.Close();
+            Browsers.Close();
         }
         
 
