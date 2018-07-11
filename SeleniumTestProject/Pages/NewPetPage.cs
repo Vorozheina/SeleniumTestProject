@@ -6,6 +6,9 @@ namespace SeleniumTestProject.Pages
 {
     class NewPetPage : HomePage
     {
+        public NewPetPage(IWebDriver driver) : base(driver)
+        { }
+
         [FindsBy(How = How.XPath, Using = "/html/body/div[1]/div/form/div[1]/div[1]/div/span")]
         public IWebElement FieldPetOwnerText { get; set; }
 

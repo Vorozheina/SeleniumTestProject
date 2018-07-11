@@ -6,6 +6,9 @@ namespace SeleniumTestProject.Pages
 {
     class FindOwnersPage : HomePage
     {
+        public FindOwnersPage(IWebDriver driver) : base(driver)
+        { }
+
         /// <summary>Строка ввода поиска владельца по фамилии</summary>
         [FindsBy(How = How.CssSelector, Using = "input[id='lastName']")]
         public IWebElement FieldFindOwnerText { get; set; }

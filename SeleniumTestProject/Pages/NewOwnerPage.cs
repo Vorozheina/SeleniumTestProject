@@ -6,6 +6,9 @@ namespace SeleniumTestProject.Pages
 {
     class NewOwnerPage : HomePage
     {
+        public NewOwnerPage(IWebDriver driver) : base(driver)
+        { }
+
         [FindsBy(How = How.CssSelector, Using = "input[id='firstName']")]
         public IWebElement FieldOwnerFirstNameText { get; set; }
 

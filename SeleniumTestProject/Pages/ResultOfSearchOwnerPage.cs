@@ -6,6 +6,9 @@ namespace SeleniumTestProject.Pages
 {
     class ResultOfSearchOwnerPage : HomePage
     {
+        public ResultOfSearchOwnerPage(IWebDriver driver) : base(driver)
+        { }
+
         [FindsBy(How = How.Id, Using = "vets")]
         public IWebElement TableFindOwnerResult { get; set; }
 

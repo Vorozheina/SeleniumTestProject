@@ -1,15 +1,15 @@
 ﻿using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
 using OpenQA.Selenium.Firefox;
+using System.Configuration;
 
-
-namespace SeleniumTestProject
+namespace SeleniumTestProject.Base
 {
     public class Browsers
     {
         private static IWebDriver webDriver;
-        private static string baseURL = "http://localhost:8080/";
-        private static string browser = "Firefox";
+        private static string baseURL = ConfigurationManager.AppSettings["URL"];
+        private static string browser = ConfigurationManager.AppSettings["Browser"];
 
         public static void Init()
         {

@@ -6,6 +6,9 @@ namespace SeleniumTestProject.Pages
 {
     class OwnerProfilePage : HomePage
     {
+        public OwnerProfilePage(IWebDriver driver) : base(driver)
+        { }
+
         [FindsBy(How = How.XPath, Using = "/html/body/div[1]/div/table[1]/tbody/tr[1]/td/b")]
         public IWebElement FieldOwnerProfileNameText { get; set; }
                 

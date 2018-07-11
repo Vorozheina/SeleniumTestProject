@@ -1,12 +1,16 @@
 ﻿using OpenQA.Selenium;
 using OpenQA.Selenium.Support.PageObjects;
+using SeleniumTestProject.Base;
 
 
 namespace SeleniumTestProject.Pages
 {
-    class HomePage
+    class HomePage : Page
     {
+        public HomePage(IWebDriver driver) : base(driver)
+        { }
 
+        
         [FindsBy(How = How.CssSelector, Using = "h2")]
         public IWebElement GetHomePageH2 { get; set; }
 
@@ -28,7 +32,7 @@ namespace SeleniumTestProject.Pages
         //переход на страницу с сообщением об ошибке
         [FindsBy(How = How.CssSelector, Using = "a[title *='RuntimeException'")]
         public IWebElement UrlErrorClick { get; set; }
-
+        
 
     }
 }

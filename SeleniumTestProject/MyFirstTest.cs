@@ -3,10 +3,12 @@ using OpenQA.Selenium;
 using System;
 using SeleniumTestProject.Pages;
 using OpenQA.Selenium.Support.PageObjects;
+using SeleniumTestProject.Base;
+using Newtonsoft.Json;
 
 namespace SeleniumTestProject
 {
-    public class MyFirstTest : Browsers
+    public class MyFirstTest
     {
         [SetUp]
         public void SetUp()
@@ -19,21 +21,22 @@ namespace SeleniumTestProject
         {
             IWebDriver driver = Browsers.getDriver;
 
-            HomePage homePage = new HomePage();
-            PageFactory.InitElements(driver, homePage);
+            //json
+            
+
+            var homePage = new HomePage(driver);
+
             IWebElement webElementHomePageH2 = homePage.GetHomePageH2;
 
-            Assert.AreEqual("Welcome", webElementHomePageH2.Text);
+            Assert.AreEqual("Welcome", webElementHomePageH2.Text, "The Home Page has not opened, the header is ");
             Assert.AreEqual("http://localhost:8080/", driver.Url);
 
             homePage.UrlFindOwnersClick.Click();
-
-            FindOwnersPage findOwnersPage = new FindOwnersPage();
-            PageFactory.InitElements(driver, findOwnersPage);
+            
+            var findOwnersPage = new FindOwnersPage(driver);
             findOwnersPage.BtnFindOwnerClick.Click();
 
-            ResultOfSearchOwnerPage resultOfSearchOwnerPage = new ResultOfSearchOwnerPage();
-            PageFactory.InitElements(driver, resultOfSearchOwnerPage);
+            var resultOfSearchOwnerPage = new ResultOfSearchOwnerPage(driver);
             IWebElement webElementFindOwnersPage = resultOfSearchOwnerPage.TableFindOwnerResult;
 
             Assert.IsTrue(webElementFindOwnersPage.Displayed);
@@ -42,8 +45,8 @@ namespace SeleniumTestProject
             resultOfSearchOwnerPage.UrlFindOwnersClick.Click();
             findOwnersPage.BtnAddNewOwnerClick.Click();
 
-            NewOwnerPage newOwnerPage = new NewOwnerPage();
-            PageFactory.InitElements(driver, newOwnerPage);
+            var newOwnerPage = new NewOwnerPage(driver);
+
             string FirstName = "Ivan";
             string LastName = "Ivanov";
             string Address = "15 Osenny Blvd.";
@@ -58,8 +61,7 @@ namespace SeleniumTestProject
             newOwnerPage.FieldOwnerTelephoneText.SendKeys(Telephone);
             newOwnerPage.BtnAddOwnerClick.Click();
 
-            OwnerProfilePage ownerProfilePage = new OwnerProfilePage();
-            PageFactory.InitElements(driver, ownerProfilePage);
+            var ownerProfilePage = new OwnerProfilePage(driver);
 
             Assert.AreEqual(FullName, ownerProfilePage.FieldOwnerProfileNameText.Text);
             Assert.AreEqual(Address, ownerProfilePage.FieldOwnerProfileAddressText.Text);
@@ -83,13 +85,11 @@ namespace SeleniumTestProject
 
             ownerProfilePage.BtnAddNewPetClick.Click();
 
-            //driver.Navigate().GoToUrl("http://localhost:8080/owners/11");
             driver.Navigate().Back();
 
             ownerProfilePage.BtnAddNewPetClick.Click();
 
-            NewPetPage newPetPage = new NewPetPage();
-            PageFactory.InitElements(driver, newPetPage);
+            var newPetPage = new NewPetPage(driver);
 
             Assert.AreEqual(FullName, newPetPage.FieldPetOwnerText.Text);
 
@@ -111,8 +111,7 @@ namespace SeleniumTestProject
 
             ownerProfilePage.LnkEditPetClick.Click();
 
-            EditPetPage editPetPage = new EditPetPage();
-            PageFactory.InitElements(driver, editPetPage);
+            var editPetPage = new EditPetPage(driver);
 
             editPetPage.OptionPetType.FindElement(By.CssSelector("option[value='dog']")).Click();
             editPetPage.BtnEditPetClick.Click();
@@ -123,8 +122,7 @@ namespace SeleniumTestProject
 
             ownerProfilePage.LnkAddVisitClick.Click();
 
-            NewVisitPage newVisitPage = new NewVisitPage();
-            PageFactory.InitElements(driver, newVisitPage);
+            var newVisitPage = new NewVisitPage(driver);
 
             string Description = "Vaccination";
 
