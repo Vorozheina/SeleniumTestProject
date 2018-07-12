@@ -17,9 +17,10 @@ namespace SeleniumTestProject.Pages
         public IWebElement FieldOwnerProfileCity => driver.FindElement(By.XPath(".//th[text()='City']/following-sibling::td"));
 
         public IWebElement FieldOwnerProfileTelephone => driver.FindElement(By.XPath(".//th[text()='Telephone']/following-sibling::td"));
+                
+        public IList<IWebElement> TableOwnerProfilePetRows => (driver.FindElement(By.XPath(".//h2[text()='Pets and Visits']/following-sibling::table"))).FindElements(By.CssSelector("tr"));
 
-        public IList<IWebElement> TableOwnerProfilePetRows => driver.FindElements(By.XPath(".//h2[text()='Pets and Visits']/following-sibling::table/tr"));
-              
+
 
         public IWebElement BtnEditOwner => driver.FindElement(By.LinkText("Edit Owner"));
 
