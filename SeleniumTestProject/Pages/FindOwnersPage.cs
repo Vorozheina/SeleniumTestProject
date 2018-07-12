@@ -9,18 +9,14 @@ namespace SeleniumTestProject.Pages
         public FindOwnersPage(IWebDriver driver) : base(driver)
         { }
 
-        /// <summary>Строка ввода поиска владельца по фамилии</summary>
-        [FindsBy(How = How.CssSelector, Using = "input[id='lastName']")]
-        public IWebElement FieldFindOwnerText { get; set; }
+        /// <summary>Поле ввода фамилии владельца для поиска</summary>
+        public IWebElement FieldFindOwner => driver.FindElement(By.CssSelector("input[id='lastName']"));
 
-        /// <summary>Кнопка для поиска владельца</summary>
-        [FindsBy(How = How.CssSelector, Using = "button[type='submit'")]
-        public IWebElement BtnFindOwnerClick { get; set; }
+        /// <summary>Кнопка для поиска владельца домашних животных</summary>
+        public IWebElement BtnFindOwner => driver.FindElement(By.CssSelector("button[type='submit'"));
 
-        //кнопка для добавления новой записи
-        [FindsBy(How = How.CssSelector, Using = "a[href *='new'")]
-        public IWebElement BtnAddNewOwnerClick { get; set; }
-
+        /// <summary>Кнопка для добавления нового владельца домашних животных</summary>
+        public IWebElement BtnAddNewOwner => driver.FindElement(By.CssSelector("a[href *='new'"));
         
     }
 }

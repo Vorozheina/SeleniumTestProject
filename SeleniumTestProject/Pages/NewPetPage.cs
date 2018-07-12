@@ -9,19 +9,18 @@ namespace SeleniumTestProject.Pages
         public NewPetPage(IWebDriver driver) : base(driver)
         { }
 
-        [FindsBy(How = How.XPath, Using = "/html/body/div[1]/div/form/div[1]/div[1]/div/span")]
-        public IWebElement FieldPetOwnerText { get; set; }
 
-        [FindsBy(How = How.CssSelector, Using = "input[id='name']")]
-        public IWebElement FieldPetNameText { get; set; }
+        public IWebElement FieldPetOwner => driver.FindElement(By.XPath(".//label[text()='Owner']/following-sibling::div/span"));
+        
+        public IWebElement FieldPetName => driver.FindElement(By.CssSelector("input[id='name']"));
 
-        [FindsBy(How = How.CssSelector, Using = "input[id='birthDate']")]
-        public IWebElement FieldPetBirthDateText { get; set; }
+        public IWebElement FieldPetBirthDate => driver.FindElement(By.CssSelector("input[id='birthDate']"));
 
-        [FindsBy(How = How.CssSelector, Using = "select[id='type']")]
-        public IWebElement OptionPetType { get; set; }
+        public IWebElement OptionPetType => driver.FindElement(By.CssSelector("select[id='type']"));
 
-        [FindsBy(How = How.CssSelector, Using = "button[type='submit']")]
-        public IWebElement BtnAddPetClick { get; set; }
+        public IWebElement BtnAddPet => driver.FindElement(By.CssSelector("button[type='submit']"));
+
+        public IWebElement SelectPetType(string petType) => this.OptionPetType.FindElement(By.CssSelector("option[value='" + petType + "']"));
+
     }
 }

@@ -1,4 +1,5 @@
 ﻿using OpenQA.Selenium;
+using System.Collections.Generic;
 using OpenQA.Selenium.Support.PageObjects;
 
 
@@ -9,18 +10,23 @@ namespace SeleniumTestProject.Pages
         public OwnerProfilePage(IWebDriver driver) : base(driver)
         { }
 
-        [FindsBy(How = How.XPath, Using = "/html/body/div[1]/div/table[1]/tbody/tr[1]/td/b")]
-        public IWebElement FieldOwnerProfileNameText { get; set; }
-                
-        [FindsBy(How = How.XPath, Using = "/html/body/div[1]/div/table[1]/tbody/tr[2]/td")]
-        public IWebElement FieldOwnerProfileAddressText { get; set; }
+        public IWebElement FieldOwnerProfileName => driver.FindElement(By.XPath(".//th[text()='Name']/following-sibling::td/b"));
 
-        [FindsBy(How = How.XPath, Using = "/html/body/div[1]/div/table[1]/tbody/tr[3]/td")]
-        public IWebElement FieldOwnerProfileCityText { get; set; }
+        public IWebElement FieldOwnerProfileAddress => driver.FindElement(By.XPath(".//th[text()='Address']/following-sibling::td"));
 
-        [FindsBy(How = How.XPath, Using = "/html/body/div[1]/div/table[1]/tbody/tr[4]/td")]
-        public IWebElement FieldOwnerProfileTelephoneText { get; set; }
+        public IWebElement FieldOwnerProfileCity => driver.FindElement(By.XPath(".//th[text()='City']/following-sibling::td"));
 
+        public IWebElement FieldOwnerProfileTelephone => driver.FindElement(By.XPath(".//th[text()='Telephone']/following-sibling::td"));
+
+        public IList<IWebElement> TableOwnerProfilePetRows => driver.FindElements(By.XPath(".//h2[text()='Pets and Visits']/following-sibling::table/tr"));
+              
+
+        public IWebElement BtnEditOwner => driver.FindElement(By.LinkText("Edit Owner"));
+
+        public IWebElement BtnAddNewPet => driver.FindElement(By.LinkText("Add New Pet"));
+
+        //public IWebElement LnkEditPet => driver.FindElement
+        /*
         [FindsBy(How = How.XPath, Using = "/html/body/div[1]/div/table[2]")]
         public IWebElement TableOwnerProfile { get; set; }
 
@@ -35,5 +41,6 @@ namespace SeleniumTestProject.Pages
 
         [FindsBy(How = How.LinkText, Using = "Add Visit")]
         public IWebElement LnkAddVisitClick { get; set; }
+        */
     }
 } 

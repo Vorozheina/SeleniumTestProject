@@ -2,6 +2,7 @@
 using OpenQA.Selenium.Support.PageObjects;
 using System.Collections.Generic;
 
+
 namespace SeleniumTestProject.Pages
 {
     class ResultOfSearchOwnerPage : HomePage
@@ -9,11 +10,13 @@ namespace SeleniumTestProject.Pages
         public ResultOfSearchOwnerPage(IWebDriver driver) : base(driver)
         { }
 
-        [FindsBy(How = How.Id, Using = "vets")]
-        public IWebElement TableFindOwnerResult { get; set; }
+        /// <summary>Таблица с результатом поиска владельца домашних животных</summary>
+        public IWebElement TableFindOwnerResult => driver.FindElement(By.Id("vets"));
 
-        [FindsBy(How = How.CssSelector, Using = "tr")]
-        public IList<IWebElement> TableFindOwnerResultRows { get; set; }
+        /// <summary>Таблица с результатом поиска владельца домашних животных</summary>
+        public IList<IWebElement> TableFindOwnerResultRows => driver.FindElements(By.CssSelector("tr"));
                 
+        /// <summary>Выбор владельца домашних животных по имени</summary>
+        public IWebElement SelectProfileByName(string fullName) => driver.FindElement(By.LinkText(fullName));
     }
 }

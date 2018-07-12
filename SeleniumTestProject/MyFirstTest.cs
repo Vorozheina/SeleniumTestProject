@@ -31,21 +31,23 @@ namespace SeleniumTestProject
             Assert.AreEqual("Welcome", webElementHomePageH2.Text, "The Home Page has not opened, the header is ");
             Assert.AreEqual("http://localhost:8080/", driver.Url);
 
-            homePage.UrlFindOwnersClick.Click();
-            
-            var findOwnersPage = new FindOwnersPage(driver);
-            findOwnersPage.BtnFindOwnerClick.Click();
+            homePage.UrlFindOwners.Click();
 
+                        
+            var findOwnersPage = new FindOwnersPage(driver);
+            findOwnersPage.BtnFindOwner.Click();
+                        
             var resultOfSearchOwnerPage = new ResultOfSearchOwnerPage(driver);
             IWebElement webElementFindOwnersPage = resultOfSearchOwnerPage.TableFindOwnerResult;
-
+            
             Assert.IsTrue(webElementFindOwnersPage.Displayed);
             Assert.AreEqual(10, resultOfSearchOwnerPage.TableFindOwnerResultRows.Count - 1);
-
-            resultOfSearchOwnerPage.UrlFindOwnersClick.Click();
-            findOwnersPage.BtnAddNewOwnerClick.Click();
-
+            
+            resultOfSearchOwnerPage.UrlFindOwners.Click();
+            findOwnersPage.BtnAddNewOwner.Click();
+            
             var newOwnerPage = new NewOwnerPage(driver);
+            /*изменить на вызов Json!!!*/
 
             string FirstName = "Ivan";
             string LastName = "Ivanov";
@@ -54,62 +56,69 @@ namespace SeleniumTestProject
             string Telephone = "4957771234";
             string FullName = String.Concat(FirstName + " ", LastName);
 
-            newOwnerPage.FieldOwnerFirstNameText.SendKeys(FirstName);
-            newOwnerPage.FieldOwnerLastNameText.SendKeys(LastName);
-            newOwnerPage.FieldOwnerAddressText.SendKeys(Address);
-            newOwnerPage.FieldOwnerCityText.SendKeys(City);
-            newOwnerPage.FieldOwnerTelephoneText.SendKeys(Telephone);
-            newOwnerPage.BtnAddOwnerClick.Click();
+            /*изменить на вызов Json!!!*/
 
+            newOwnerPage.FieldOwnerFirstName.SendKeys(FirstName);
+            newOwnerPage.FieldOwnerLastName.SendKeys(LastName);
+            newOwnerPage.FieldOwnerAddress.SendKeys(Address);
+            newOwnerPage.FieldOwnerCity.SendKeys(City);
+            newOwnerPage.FieldOwnerTelephone.SendKeys(Telephone);
+            newOwnerPage.BtnAddOwner.Click();
+            
             var ownerProfilePage = new OwnerProfilePage(driver);
 
-            Assert.AreEqual(FullName, ownerProfilePage.FieldOwnerProfileNameText.Text);
-            Assert.AreEqual(Address, ownerProfilePage.FieldOwnerProfileAddressText.Text);
-            Assert.AreEqual(City, ownerProfilePage.FieldOwnerProfileCityText.Text);
-            Assert.AreEqual(Telephone, ownerProfilePage.FieldOwnerProfileTelephoneText.Text);
+            Assert.AreEqual(FullName, ownerProfilePage.FieldOwnerProfileName.Text);
+            Assert.AreEqual(Address, ownerProfilePage.FieldOwnerProfileAddress.Text);
+            Assert.AreEqual(City, ownerProfilePage.FieldOwnerProfileCity.Text);
+            Assert.AreEqual(Telephone, ownerProfilePage.FieldOwnerProfileTelephone.Text);
 
-            Assert.AreEqual(0, ownerProfilePage.TableOwnerProfile.FindElements(By.CssSelector("tr")).Count);
+            Assert.AreEqual(0, ownerProfilePage.TableOwnerProfilePetRows.Count);
+                        
+            ownerProfilePage.UrlFindOwners.Click();
 
-            ownerProfilePage.UrlFindOwnersClick.Click();
-
-            findOwnersPage.BtnFindOwnerClick.Click();
+            findOwnersPage.BtnFindOwner.Click();
 
             Assert.AreEqual(11, resultOfSearchOwnerPage.TableFindOwnerResultRows.Count - 1);
 
-            Assert.IsNotNull(resultOfSearchOwnerPage.TableFindOwnerResult.FindElement(By.LinkText(FullName)));
-            Assert.IsNotNull(resultOfSearchOwnerPage.TableFindOwnerResult.FindElement(By.XPath(".//td[text() = '" + Address + "']")));
-            Assert.IsNotNull(resultOfSearchOwnerPage.TableFindOwnerResult.FindElement(By.XPath(".//td[text() = '" + City + "']")));
-            Assert.IsNotNull(resultOfSearchOwnerPage.TableFindOwnerResult.FindElement(By.XPath(".//td[text() = '" + Telephone + "']")));
+            Assert.IsTrue(resultOfSearchOwnerPage.PageSource.Contains(FullName));
+            Assert.IsTrue(resultOfSearchOwnerPage.PageSource.Contains(Address));
+            Assert.IsTrue(resultOfSearchOwnerPage.PageSource.Contains(City));
+            Assert.IsTrue(resultOfSearchOwnerPage.PageSource.Contains(Telephone));
 
-            resultOfSearchOwnerPage.TableFindOwnerResult.FindElement(By.LinkText(FullName)).Click();
-
-            ownerProfilePage.BtnAddNewPetClick.Click();
+            resultOfSearchOwnerPage.SelectProfileByName(FullName).Click();
+            
+            ownerProfilePage.BtnAddNewPet.Click();
 
             driver.Navigate().Back();
 
-            ownerProfilePage.BtnAddNewPetClick.Click();
+            ownerProfilePage.BtnAddNewPet.Click();
 
             var newPetPage = new NewPetPage(driver);
 
-            Assert.AreEqual(FullName, newPetPage.FieldPetOwnerText.Text);
-
+            Assert.AreEqual(FullName, newPetPage.FieldPetOwner.Text);
+            
+            //json!!!
             string PetName = "Tom";
             string PetBirthDate = "2015-04-04";
             string PetType = "cat";
+            //json!!!
 
-            newPetPage.FieldPetNameText.SendKeys(PetName);
-            newPetPage.FieldPetBirthDateText.SendKeys(PetBirthDate);
-            newPetPage.OptionPetType.FindElement(By.CssSelector("option[value='cat']")).Click();
+            newPetPage.FieldPetName.SendKeys(PetName);
+            newPetPage.FieldPetBirthDate.SendKeys(PetBirthDate);
+            newPetPage.SelectPetType(PetType).Click();
+            
+            
+            newPetPage.BtnAddPet.Click();
 
-            newPetPage.BtnAddPetClick.Click();
-
-            Assert.IsNotNull(ownerProfilePage.TableOwnerProfile.FindElements(By.CssSelector("tr")));
-
+            Assert.Greater(ownerProfilePage.TableOwnerProfilePetRows.Count, 0);
+            /*
+            
             Assert.AreEqual(PetName, ownerProfilePage.TableOwnerProfile.FindElement(By.XPath(".//tr/td[1]/dl/dd[1]")).Text);
             Assert.AreEqual(PetBirthDate, ownerProfilePage.TableOwnerProfile.FindElement(By.XPath(".//tr/td[1]/dl/dd[2]")).Text);
             Assert.AreEqual(PetType, ownerProfilePage.TableOwnerProfile.FindElement(By.XPath(".//tr/td[1]/dl/dd[3]")).Text);
-
-            ownerProfilePage.LnkEditPetClick.Click();
+            */
+            /*
+            ownerProfilePage.LnkEditPetCLick.Click();
 
             var editPetPage = new EditPetPage(driver);
 
@@ -132,6 +141,7 @@ namespace SeleniumTestProject
             newVisitPage.BtnAddVisitClick.Click();
 
             Assert.AreEqual(Description, ownerProfilePage.TableOwnerProfile.FindElement(By.XPath(".//tr/td[2]/table/tbody/tr[1]/td[2]")).Text);
+            */
         }
 
         [TearDown]

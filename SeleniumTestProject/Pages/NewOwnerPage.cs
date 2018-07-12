@@ -9,22 +9,23 @@ namespace SeleniumTestProject.Pages
         public NewOwnerPage(IWebDriver driver) : base(driver)
         { }
 
-        [FindsBy(How = How.CssSelector, Using = "input[id='firstName']")]
-        public IWebElement FieldOwnerFirstNameText { get; set; }
+        /// <summary>Поле с именем владельца домашнего животного</summary>
+        public IWebElement FieldOwnerFirstName => driver.FindElement(By.CssSelector("input[id='firstName']"));
 
-        [FindsBy(How = How.CssSelector, Using = "input[id='lastName']")]
-        public IWebElement FieldOwnerLastNameText { get; set; }
+        /// <summary>Поле с фамилией владельца домашнего животного</summary>
+        public IWebElement FieldOwnerLastName => driver.FindElement(By.CssSelector("input[id='lastName']"));
 
-        [FindsBy(How = How.CssSelector, Using = "input[id='address']")]
-        public IWebElement FieldOwnerAddressText { get; set; }
+        /// <summary>Поле с адресом владельца домашнего животного</summary>
+        public IWebElement FieldOwnerAddress => driver.FindElement(By.CssSelector("input[id='address']"));
 
-        [FindsBy(How = How.CssSelector, Using = "input[id='city']")]
-        public IWebElement FieldOwnerCityText { get; set; }
+        /// <summary>Поле с названием города владельца домашнего животного</summary>
+        public IWebElement FieldOwnerCity => driver.FindElement(By.CssSelector("input[id='city']"));
 
-        [FindsBy(How = How.CssSelector, Using = "input[id='telephone']")]
-        public IWebElement FieldOwnerTelephoneText { get; set; }
+        /// <summary>Поле с номером телефона владельца домашнего животного</summary>
+        public IWebElement FieldOwnerTelephone => driver.FindElement(By.CssSelector("input[id='telephone']"));
 
-        [FindsBy(How = How.CssSelector, Using = "button[type='submit'")]
-        public IWebElement BtnAddOwnerClick { get; set; }
+        /// <summary>Кнопка для добавления владельца домашнего животного</summary>
+        public IWebElement BtnAddOwner => driver.FindElement(By.CssSelector("button[type='submit'"));
+        
     }
 }

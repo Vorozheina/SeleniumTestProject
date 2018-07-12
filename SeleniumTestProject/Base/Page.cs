@@ -10,10 +10,12 @@ namespace SeleniumTestProject.Base
 {
     public abstract class Page
     {
-       public Page(IWebDriver driver)
-        {
-            PageFactory.InitElements(driver, this);
-        }
-        
+        public IWebDriver driver;
+
+        public Page(IWebDriver driver) => this.driver = driver;
+
+        public string PageSource => this.driver.PageSource;
+
+
     }
 }
