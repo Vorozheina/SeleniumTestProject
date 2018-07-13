@@ -100,48 +100,47 @@ namespace SeleniumTestProject
             //json!!!
             string PetName = "Tom";
             string PetBirthDate = "2015-04-04";
-            string PetType = "cat";
+            
             //json!!!
 
             newPetPage.FieldPetName.SendKeys(PetName);
             newPetPage.FieldPetBirthDate.SendKeys(PetBirthDate);
-            newPetPage.SelectPetType(PetType).Click();
-            
+            newPetPage.SelectPetType(1).Click();
+
+            string PetType = newPetPage.SelectPetType(1).Text;
+
             
             newPetPage.BtnAddPet.Click();
 
             Assert.Greater(ownerProfilePage.TableOwnerProfilePetRows.Count, 0);
-            /*
-            
-            Assert.AreEqual(PetName, ownerProfilePage.TableOwnerProfile.FindElement(By.XPath(".//tr/td[1]/dl/dd[1]")).Text);
-            Assert.AreEqual(PetBirthDate, ownerProfilePage.TableOwnerProfile.FindElement(By.XPath(".//tr/td[1]/dl/dd[2]")).Text);
-            Assert.AreEqual(PetType, ownerProfilePage.TableOwnerProfile.FindElement(By.XPath(".//tr/td[1]/dl/dd[3]")).Text);
-            */
-            /*
-            ownerProfilePage.LnkEditPetCLick.Click();
 
+            Assert.IsNotNull(ownerProfilePage.FindPetDataInTable(PetName, PetBirthDate, PetType));
+
+            ownerProfilePage.LnkEditPet(PetName).Click();
+            
+       
             var editPetPage = new EditPetPage(driver);
 
-            editPetPage.OptionPetType.FindElement(By.CssSelector("option[value='dog']")).Click();
-            editPetPage.BtnEditPetClick.Click();
+            editPetPage.SelectPetType(2).Click();
 
-            PetType = "dog";
+            PetType = editPetPage.SelectPetType(2).Text;
 
-            Assert.AreEqual(PetType, ownerProfilePage.TableOwnerProfile.FindElement(By.XPath(".//tr/td[1]/dl/dd[3]")).Text);
-
-            ownerProfilePage.LnkAddVisitClick.Click();
+            editPetPage.BtnEditPet.Click();
+                     
+            Assert.AreEqual(PetType, ownerProfilePage.GetTypeOfPet(PetName).Text);
+            
+            ownerProfilePage.LnkAddVisit(PetName).Click();
 
             var newVisitPage = new NewVisitPage(driver);
 
             string Description = "Vaccination";
 
+            newVisitPage.FieldVisitDescription.SendKeys(Description);
 
-            newVisitPage.FieldVisitDescriptionText.SendKeys(Description);
+            newVisitPage.BtnAddVisit.Click();
 
-            newVisitPage.BtnAddVisitClick.Click();
-
-            Assert.AreEqual(Description, ownerProfilePage.TableOwnerProfile.FindElement(By.XPath(".//tr/td[2]/table/tbody/tr[1]/td[2]")).Text);
-            */
+            Assert.IsNotNull(ownerProfilePage.FindDescriptionOfVisitInTable(PetName, Description));
+            
         }
 
         [TearDown]

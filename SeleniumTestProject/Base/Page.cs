@@ -15,7 +15,7 @@ namespace SeleniumTestProject.Base
         public Page(IWebDriver driver) => this.driver = driver;
 
         public string PageSource => this.driver.PageSource;
-
+                
 
     }
 }

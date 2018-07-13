@@ -1,5 +1,7 @@
-﻿using OpenQA.Selenium;
+﻿using System.Collections.Generic;
+using OpenQA.Selenium;
 using OpenQA.Selenium.Support.PageObjects;
+using OpenQA.Selenium.Support.UI;
 
 
 namespace SeleniumTestProject.Pages
@@ -20,7 +22,13 @@ namespace SeleniumTestProject.Pages
 
         public IWebElement BtnAddPet => driver.FindElement(By.CssSelector("button[type='submit']"));
 
-        public IWebElement SelectPetType(string petType) => this.OptionPetType.FindElement(By.CssSelector("option[value='" + petType + "']"));
+        public IWebElement SelectPetType(int i)
+        {
+            SelectElement selectElement = new SelectElement(OptionPetType);
+            IList<IWebElement> options = selectElement.Options;
+            IWebElement firstOption = options[i];
+            return firstOption;
+        }
 
     }
 }

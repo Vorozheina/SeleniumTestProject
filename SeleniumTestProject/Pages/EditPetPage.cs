@@ -9,8 +9,7 @@ namespace SeleniumTestProject.Pages
         public EditPetPage(IWebDriver driver) : base(driver)
         { }
 
-        [FindsBy(How = How.CssSelector, Using = "button[type='submit']")]
-        public IWebElement BtnEditPetClick { get; set; }
-
+        public IWebElement BtnEditPet => driver.FindElement(By.CssSelector("button[type='submit']"));
+        
     }
 }

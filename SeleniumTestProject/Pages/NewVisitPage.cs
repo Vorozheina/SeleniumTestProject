@@ -9,13 +9,11 @@ namespace SeleniumTestProject.Pages
         public NewVisitPage(IWebDriver driver) : base(driver)
         { }
 
-        [FindsBy(How = How.XPath, Using = "//*[@id='date']")]
-        public IWebElement FieldVisitDateText { get; set; }
+        public IWebElement FieldVisitDate => driver.FindElement(By.XPath("//*[@id='date']"));
 
-        [FindsBy(How = How.CssSelector, Using = "input[id='description']")]
-        public IWebElement FieldVisitDescriptionText { get; set; }
+        public IWebElement FieldVisitDescription => driver.FindElement(By.CssSelector("input[id='description']"));
 
-        [FindsBy(How = How.CssSelector, Using = "button[type='submit']")]
-        public IWebElement BtnAddVisitClick { get; set; }
+        public IWebElement BtnAddVisit => driver.FindElement(By.CssSelector("button[type='submit']"));
+        
     }
 }
