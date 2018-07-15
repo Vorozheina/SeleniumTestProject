@@ -1,6 +1,5 @@
 ﻿using OpenQA.Selenium;
 using System.Collections.Generic;
-using OpenQA.Selenium.Support.PageObjects;
 
 
 namespace SeleniumTestProject.Pages
@@ -24,8 +23,6 @@ namespace SeleniumTestProject.Pages
 
         public IWebElement BtnAddNewPet => driver.FindElement(By.LinkText("Add New Pet"));
 
-
-        //
         public IWebElement FindPetDataInTable(string PetName, string PetBirthDate = "", string PetType = "")
         {
             IList<IWebElement> webElements = TableOwnerProfilePetRows;

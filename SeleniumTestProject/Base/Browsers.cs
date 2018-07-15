@@ -10,7 +10,7 @@ namespace SeleniumTestProject.Base
         private static IWebDriver webDriver;
         private static string baseURL = ConfigurationManager.AppSettings["URL"];
         private static string browser = ConfigurationManager.AppSettings["Browser"];
-
+        
         public static void Init()
         {
             switch (browser)
@@ -24,6 +24,8 @@ namespace SeleniumTestProject.Base
             }
             webDriver.Manage().Window.Maximize();
             Goto(baseURL);
+
+
         }
         public static string Title
         {
