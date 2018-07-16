@@ -126,8 +126,10 @@ namespace SeleniumTestProject
             // Заполняем профиль домашнего животного
             newPetPage.FieldPetName.SendKeys(PetName);
             newPetPage.FieldPetBirthDate.SendKeys(PetBirthDate);
-            newPetPage.SelectPetType(1).Click();
-            string PetType = newPetPage.SelectPetType(1).Text;
+            Random intPetType = new Random();
+            int petTypeNumber = intPetType.Next(0, 5);
+            newPetPage.SelectPetType(petTypeNumber).Click();
+            string PetType = newPetPage.SelectPetType(petTypeNumber).Text;
 
             // Подтверждаем добавление записи о новом питомце
             newPetPage.BtnAddPet.Click();
@@ -144,8 +146,9 @@ namespace SeleniumTestProject
             var editPetPage = new EditPetPage(driver);
 
             // Меняем тип питомца
-            editPetPage.SelectPetType(2).Click();
-            PetType = editPetPage.SelectPetType(2).Text;
+            petTypeNumber = intPetType.Next(0, 5);
+            editPetPage.SelectPetType(petTypeNumber).Click();
+            PetType = editPetPage.SelectPetType(petTypeNumber).Text;
 
             // Подвтерждаем изменения
             editPetPage.BtnEditPet.Click();
