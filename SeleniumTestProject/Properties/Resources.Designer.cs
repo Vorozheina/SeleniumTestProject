@@ -59,5 +59,15 @@ namespace SeleniumTestProject.Properties {
                 resourceCulture = value;
             }
         }
+        
+        /// <summary>
+        ///   Поиск локализованного ресурса типа System.Byte[].
+        /// </summary>
+        internal static byte[] Constants {
+            get {
+                object obj = ResourceManager.GetObject("Constants", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
     }
 }

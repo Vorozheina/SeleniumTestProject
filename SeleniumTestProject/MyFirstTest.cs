@@ -5,7 +5,9 @@ using System.IO;
 using SeleniumTestProject.Pages;
 using SeleniumTestProject.Base;
 using Newtonsoft.Json.Linq;
+using Newtonsoft.Json;
 using System.Configuration;
+using System.Text;
 
 
 namespace SeleniumTestProject
@@ -16,15 +18,19 @@ namespace SeleniumTestProject
         public void SetUp()
         {
             Browsers.Init();
+            
         }
 
         [Test]
         public void MainScenarioTest()
         {
-           string constantsFilePath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, @"Utils\Config.json");
-           JObject jsonConstants = JObject.Parse(File.ReadAllText(constantsFilePath));
-                    
-                        
+            byte[] jsonBytes = Properties.Resources.Constants;
+
+            string stringJsonConstants = Encoding.UTF8.GetString(jsonBytes);
+            stringJsonConstants = stringJsonConstants.Substring(1);
+
+            JObject jsonConstants = JObject.Parse(stringJsonConstants);
+
             // Открываем окно браузера и переходим на главную страницу проекта Spring - Petclinic
             IWebDriver driver = Browsers.getDriver;
             
