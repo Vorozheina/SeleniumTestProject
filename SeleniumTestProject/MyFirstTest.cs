@@ -40,9 +40,9 @@ namespace SeleniumTestProject
             IWebElement webElementHomePageH2 = homePage.GetHomePageH2;
 
             // Проверяем, что страница открылась (сравниваем заголовки h2)
-            Assert.AreEqual("Welcome", webElementHomePageH2.Text, "The Home Page has not opened, the header is ");
+            Assert.AreEqual("Welcome", webElementHomePageH2.Text, "The 'Home Page' is not opened");
             // Проверяем, что мы находимся на главной странице
-            Assert.AreEqual(ConfigurationManager.AppSettings["URL"], driver.Url);
+            Assert.AreEqual(ConfigurationManager.AppSettings["URL"], driver.Url, "The page is not 'Home Page'");
 
             homePage.UrlFindOwners.Click();
                         
@@ -55,9 +55,9 @@ namespace SeleniumTestProject
             IWebElement webElementFindOwnersPage = resultOfSearchOwnerPage.TableFindOwnerResult;
             
             // Проверяем, что список владельцев появился
-            Assert.IsTrue(webElementFindOwnersPage.Displayed);
+            Assert.IsTrue(webElementFindOwnersPage.Displayed, "The 'Find Owners Page' is not displayed");
             // Проверяем, что в нем содержится 10 записей
-            Assert.AreEqual(10, resultOfSearchOwnerPage.TableFindOwnerResultRows.Count - 1);
+            Assert.AreEqual(10, resultOfSearchOwnerPage.TableFindOwnerResultRows.Count - 1, "The count of rows is not equal to 10");
             
             resultOfSearchOwnerPage.UrlFindOwners.Click();
             findOwnersPage.BtnAddNewOwner.Click();
@@ -82,26 +82,26 @@ namespace SeleniumTestProject
             var ownerProfilePage = new OwnerProfilePage(driver);
 
             // Проверяем, что в полях профиля находится соответствующая, введенная ранее информация
-            Assert.AreEqual(FullName, ownerProfilePage.FieldOwnerProfileName.Text);
-            Assert.AreEqual(Address, ownerProfilePage.FieldOwnerProfileAddress.Text);
-            Assert.AreEqual(City, ownerProfilePage.FieldOwnerProfileCity.Text);
-            Assert.AreEqual(Telephone, ownerProfilePage.FieldOwnerProfileTelephone.Text);
+            Assert.AreEqual(FullName, ownerProfilePage.FieldOwnerProfileName.Text, "The Name is not consistent with the entered data");
+            Assert.AreEqual(Address, ownerProfilePage.FieldOwnerProfileAddress.Text, "The Address is not consistent with the entered data");
+            Assert.AreEqual(City, ownerProfilePage.FieldOwnerProfileCity.Text, "The City is not consistent with the entered data");
+            Assert.AreEqual(Telephone, ownerProfilePage.FieldOwnerProfileTelephone.Text, "The Telephone is not consistent with the entered data");
 
             // Проверяем, что в таблице домашних животных и посещений ветеринара у указанного владельца нет записей
-            Assert.AreEqual(0, ownerProfilePage.TableOwnerProfilePetRows.Count);
+            Assert.AreEqual(0, ownerProfilePage.TableOwnerProfilePetRows.Count, "The 'Pets and Visits Table' has some data");
 
             // Переходим на страницу поиска владельцев домшаних животных
             ownerProfilePage.UrlFindOwners.Click();
             findOwnersPage.BtnFindOwner.Click();
 
             // Проверяем, что запись о новом владельце появилась
-            Assert.AreEqual(11, resultOfSearchOwnerPage.TableFindOwnerResultRows.Count - 1);
+            Assert.AreEqual(11, resultOfSearchOwnerPage.TableFindOwnerResultRows.Count - 1, "The count of rows is not equal to 11");
 
             // Проверяем, что в таблице владельцев содержатся данные о новом владельце
-            Assert.IsTrue(resultOfSearchOwnerPage.PageSource.Contains(FullName));
-            Assert.IsTrue(resultOfSearchOwnerPage.PageSource.Contains(Address));
-            Assert.IsTrue(resultOfSearchOwnerPage.PageSource.Contains(City));
-            Assert.IsTrue(resultOfSearchOwnerPage.PageSource.Contains(Telephone));
+            Assert.IsTrue(resultOfSearchOwnerPage.PageSource.Contains(FullName), "The 'Find Owners Page' does not contain the Name data");
+            Assert.IsTrue(resultOfSearchOwnerPage.PageSource.Contains(Address), "The 'Find Owners Page' does not contain the Address data");
+            Assert.IsTrue(resultOfSearchOwnerPage.PageSource.Contains(City), "The 'Find Owners Page' does not contain the City data");
+            Assert.IsTrue(resultOfSearchOwnerPage.PageSource.Contains(Telephone), "The 'Find Owners Page' does not contain the Telephone data");
 
             // Переходим в профиль выбранного владельца домашних животных
             resultOfSearchOwnerPage.SelectProfileByName(FullName).Click();
@@ -133,10 +133,10 @@ namespace SeleniumTestProject
             newPetPage.BtnAddPet.Click();
 
             // Проверяем, что запись о питомце добавилась в профиль владельца
-            Assert.Greater(ownerProfilePage.TableOwnerProfilePetRows.Count, 0);
+            Assert.Greater(ownerProfilePage.TableOwnerProfilePetRows.Count, 0, "The data was not added to 'Pets and Visists Table'");
 
             // Проверяем информацию о питомце в таблице питомцев и посещений ветеринара
-            Assert.IsNotNull(ownerProfilePage.FindPetDataInTable(PetName, PetBirthDate, PetType));
+            Assert.IsNotNull(ownerProfilePage.FindPetDataInTable(PetName, PetBirthDate, PetType), "The pet's data is not consistent with 'Pets and Visits Table's data");
 
             // Переходим к редактированию профиля питомца
             ownerProfilePage.LnkEditPet(PetName).Click();
@@ -151,7 +151,7 @@ namespace SeleniumTestProject
             editPetPage.BtnEditPet.Click();
             
             // Проверяем, что тип домашнего питомца был изменен
-            Assert.AreEqual(PetType, ownerProfilePage.GetTypeOfPet(PetName).Text);
+            Assert.AreEqual(PetType, ownerProfilePage.GetTypeOfPet(PetName).Text, "The type of the pet was not changed");
             
             ownerProfilePage.LnkAddVisit(PetName).Click();
 
@@ -167,7 +167,7 @@ namespace SeleniumTestProject
             newVisitPage.BtnAddVisit.Click();
 
             // Проверяем, что запись о посещении ветеринара добавилась в таблицу питомцев и посещений
-            Assert.IsNotNull(ownerProfilePage.FindDescriptionOfVisitInTable(PetName, Description));
+            Assert.IsNotNull(ownerProfilePage.FindDescriptionOfVisitInTable(PetName, Description), "The description was not added to 'Pets and Visits Table'");
             
         }
 
