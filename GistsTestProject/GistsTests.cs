@@ -34,6 +34,7 @@ namespace GistsTestProject
         [Test]
         public void VerifyHttpStatusCode()
         {
+            // Проверить, что возвращается код ответа 200 (успех)
             restClient = new RestClient(ConfigurationManager.AppSettings["URL"]);
             restRequest = new RestRequest(Method.GET);
             restClient.Authenticator = new HttpBasicAuthenticator(Login, Password);
@@ -45,6 +46,7 @@ namespace GistsTestProject
         [Test]
         public void VerifyHttpResponseHeader()
         {
+            // Проверить, что заголовок полученного ответа content-type не пустой и выглядит как "application/json; charset=utf-8"
             restRequest = new RestRequest(Method.GET);
             restClient = new RestClient(ConfigurationManager.AppSettings["URL"]);
             restRequest = new RestRequest(Method.GET);
@@ -60,6 +62,7 @@ namespace GistsTestProject
         [Test]
         public void VerifyHttpResponseBody()
         {
+            // Проверить, что на странице находятся данные о 10 пользователях
             restRequest = new RestRequest(Method.GET);
             restClient = new RestClient(ConfigurationManager.AppSettings["URL"]);
             restRequest = new RestRequest(Method.GET);
