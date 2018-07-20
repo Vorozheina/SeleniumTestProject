@@ -11,6 +11,7 @@ using RestSharp.Authenticators;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 
+
 namespace GistsTestProject
 {
     public class GistsTests
@@ -69,6 +70,7 @@ namespace GistsTestProject
             IList<User> userList = JsonConvert.DeserializeObject<List<User>>(restResponse.Content);
             Assert.AreEqual(10, userList.Count);
         }
+
 
         [TearDown]
         public void CleanUp()
