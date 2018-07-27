@@ -27,8 +27,7 @@ namespace SeleniumTestProject
             byte[] jsonBytes = Properties.Resources.Constants;
 
             string stringJsonConstants = Encoding.UTF8.GetString(jsonBytes);
-            stringJsonConstants = stringJsonConstants.Substring(1);
-
+            
             JObject jsonConstants = JObject.Parse(stringJsonConstants);
 
             // Открываем окно браузера и переходим на главную страницу проекта Spring - Petclinic

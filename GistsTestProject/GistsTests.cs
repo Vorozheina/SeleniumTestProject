@@ -10,6 +10,7 @@ using RestSharp;
 using RestSharp.Authenticators;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
+using AE.Http.Proxy.Integration;
 
 
 namespace GistsTestProject
@@ -37,6 +38,7 @@ namespace GistsTestProject
         {
             // Проверить, что возвращается код ответа 200 (успех)
             restClient = new RestClient(ConfigurationManager.AppSettings["URL"]);
+            restClient.Proxy = new WebProxy("149.28.200.207",55555);
             restRequest = new RestRequest(Method.GET);
             restClient.Authenticator = new HttpBasicAuthenticator(Login, Password);
             IRestResponse restResponse = restClient.Execute(restRequest);
@@ -49,6 +51,7 @@ namespace GistsTestProject
         {
             // Проверить, что заголовок полученного ответа content-type не пустой и выглядит как "application/json; charset=utf-8"
             restClient = new RestClient(ConfigurationManager.AppSettings["URL"]);
+            restClient.Proxy = new WebProxy("149.28.200.207", 55555);
             restRequest = new RestRequest(Method.GET);
             restClient.Authenticator = new HttpBasicAuthenticator(Login, Password);
             IRestResponse restResponse = restClient.Execute(restRequest);
@@ -64,6 +67,7 @@ namespace GistsTestProject
         {
             // Проверить, что на странице находятся данные о 10 пользователях
             restClient = new RestClient(ConfigurationManager.AppSettings["URL"]);
+            restClient.Proxy = new WebProxy("149.28.200.207", 55555);
             restRequest = new RestRequest(Method.GET);
             restClient.Authenticator = new HttpBasicAuthenticator(Login, Password);
             IRestResponse restResponse = restClient.Execute(restRequest);
