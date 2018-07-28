@@ -7,7 +7,7 @@ namespace SeleniumTestProject.Pages
 {
     class NewPetPage : HomePage
     {
-        public NewPetPage(IWebDriver driver) : base(driver)
+        public NewPetPage() : base()
         { }
 
 

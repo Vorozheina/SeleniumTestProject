@@ -4,6 +4,7 @@ using System;
 using System.IO;
 using SeleniumTestProject.Pages;
 using SeleniumTestProject.Base;
+using SeleniumTestProject.Helpers;
 using Newtonsoft.Json.Linq;
 using Newtonsoft.Json;
 using System.Configuration;
@@ -23,17 +24,11 @@ namespace SeleniumTestProject
 
         [Test]
         public void MainScenarioTest()
-        {
-            byte[] jsonBytes = Properties.Resources.Constants;
-
-            string stringJsonConstants = Encoding.UTF8.GetString(jsonBytes);
-            
-            JObject jsonConstants = JObject.Parse(stringJsonConstants);
+        {   
 
             // Открываем окно браузера и переходим на главную страницу проекта Spring - Petclinic
-            IWebDriver driver = Browsers.getDriver;
-            
-            var homePage = new HomePage(driver);
+
+            var homePage = new HomePage();
 
             // Получаем заголовок h2 с главной страницы
             IWebElement webElementHomePageH2 = homePage.GetHomePageH2;
@@ -41,16 +36,16 @@ namespace SeleniumTestProject
             // Проверяем, что страница открылась (сравниваем заголовки h2)
             Assert.AreEqual("Welcome", webElementHomePageH2.Text, "The 'Home Page' is not opened");
             // Проверяем, что мы находимся на главной странице
-            Assert.AreEqual(ConfigurationManager.AppSettings["URL"], driver.Url, "The page is not 'Home Page'");
+            Assert.AreEqual(ConfigurationManager.AppSettings["URL"], Browsers.Url, "The page is not 'Home Page'");
 
             homePage.UrlFindOwners.Click();
                         
             // Переходим на страницу поиска владельцев домашних животных
-            var findOwnersPage = new FindOwnersPage(driver);
+            var findOwnersPage = new FindOwnersPage();
             findOwnersPage.BtnFindOwner.Click();
             
             // Получаем список всех владельцев домашних животных
-            var resultOfSearchOwnerPage = new ResultOfSearchOwnerPage(driver);
+            var resultOfSearchOwnerPage = new ResultOfSearchOwnerPage();
             IWebElement webElementFindOwnersPage = resultOfSearchOwnerPage.TableFindOwnerResult;
             
             // Проверяем, что список владельцев появился
@@ -62,13 +57,16 @@ namespace SeleniumTestProject
             findOwnersPage.BtnAddNewOwner.Click();
             
             // Создаем профиль нового владельца домашних животных, заполняем поля формы для создания профиля
-            var newOwnerPage = new NewOwnerPage(driver);
+            var newOwnerPage = new NewOwnerPage();
 
-            string FirstName = (string)jsonConstants.SelectToken("owners[0].FirstName");
-            string LastName = (string)jsonConstants.SelectToken("owners[0].LastName");
-            string Address = (string)jsonConstants.SelectToken("owners[0].Address");
-            string City = (string)jsonConstants.SelectToken("owners[0].City");
-            string Telephone = (string)jsonConstants.SelectToken("owners[0].Telephone");
+            // Загружаем данные для создания нового пользователя из json'а
+            Owner owner = Data.GetOwner();
+            
+            string FirstName = owner.FirstName;
+            string LastName = owner.LastName;
+            string Address = owner.Address;
+            string City = owner.City;
+            string Telephone = owner.Telephone;
             string FullName = String.Concat(FirstName + " ", LastName);
             
             newOwnerPage.FieldOwnerFirstName.SendKeys(FirstName);
@@ -78,7 +76,7 @@ namespace SeleniumTestProject
             newOwnerPage.FieldOwnerTelephone.SendKeys(Telephone);
             newOwnerPage.BtnAddOwner.Click();
             
-            var ownerProfilePage = new OwnerProfilePage(driver);
+            var ownerProfilePage = new OwnerProfilePage();
 
             // Проверяем, что в полях профиля находится соответствующая, введенная ранее информация
             Assert.AreEqual(FullName, ownerProfilePage.FieldOwnerProfileName.Text, "The Name is not consistent with the entered data");
@@ -109,18 +107,18 @@ namespace SeleniumTestProject
             ownerProfilePage.BtnAddNewPet.Click();
 
             // Возвращаемся назад
-            driver.Navigate().Back();
+            Browsers.GoBack();
 
             // Добавляем информацию о домашнем животном
             ownerProfilePage.BtnAddNewPet.Click();
 
-            var newPetPage = new NewPetPage(driver);
+            var newPetPage = new NewPetPage();
 
             // Проверяем, что создание записи о питомце идет именно для указанного владельца
             Assert.AreEqual(FullName, newPetPage.FieldPetOwner.Text);
-            
-            string PetName = (string)jsonConstants.SelectToken("owners[0].pets[0].PetName");
-            string PetBirthDate = (string)jsonConstants.SelectToken("owners[0].pets[0].PetBirthDate");
+
+            string PetName = owner.Pets[0].PetName;
+            string PetBirthDate = owner.Pets[0].PetBirthDate;
             
             // Заполняем профиль домашнего животного
             newPetPage.FieldPetName.SendKeys(PetName);
@@ -142,7 +140,7 @@ namespace SeleniumTestProject
             // Переходим к редактированию профиля питомца
             ownerProfilePage.LnkEditPet(PetName).Click();
 
-            var editPetPage = new EditPetPage(driver);
+            var editPetPage = new EditPetPage();
 
             // Меняем тип питомца
             petTypeNumber = intPetType.Next(0, 5);
@@ -158,9 +156,9 @@ namespace SeleniumTestProject
             ownerProfilePage.LnkAddVisit(PetName).Click();
 
             // Добавляем запись о посещении ветеринара
-            var newVisitPage = new NewVisitPage(driver);
+            var newVisitPage = new NewVisitPage();
 
-            string Description = (string)jsonConstants.SelectToken("owners[0].pets[0].visits[0].DescriptionOfVisit");
+            string Description = owner.Pets[0].Visits[0].DescriptionOfVisit;
 
             // Указываем причину посещения ветеринара
             newVisitPage.FieldVisitDescription.SendKeys(Description);

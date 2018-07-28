@@ -72,6 +72,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Base\Browsers.cs" />
+    <Compile Include="Base\Data.cs" />
+    <Compile Include="Helpers\Owner.cs" />
     <Compile Include="MyFirstTest.cs" />
     <Compile Include="Pages\EditPetPage.cs" />
     <Compile Include="Pages\HomePage.cs" />
@@ -97,9 +99,7 @@
   <ItemGroup>
     <WCFMetadata Include="Connected Services\" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="bin\Debug\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

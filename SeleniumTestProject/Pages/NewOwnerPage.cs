@@ -5,7 +5,7 @@ namespace SeleniumTestProject.Pages
 {
     class NewOwnerPage : HomePage
     {
-        public NewOwnerPage(IWebDriver driver) : base(driver)
+        public NewOwnerPage() : base()
         { }
 
         /// <summary>Поле с именем владельца домашнего животного</summary>

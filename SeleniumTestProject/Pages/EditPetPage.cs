@@ -5,7 +5,7 @@ namespace SeleniumTestProject.Pages
 {
     class EditPetPage : NewPetPage
     {
-        public EditPetPage(IWebDriver driver) : base(driver)
+        public EditPetPage() : base()
         { }
 
         public IWebElement BtnEditPet => driver.FindElement(By.CssSelector("button[type='submit']"));

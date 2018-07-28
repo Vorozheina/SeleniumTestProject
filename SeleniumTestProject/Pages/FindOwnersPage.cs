@@ -5,7 +5,7 @@ namespace SeleniumTestProject.Pages
 {
     class FindOwnersPage : HomePage
     {
-        public FindOwnersPage(IWebDriver driver) : base(driver)
+        public FindOwnersPage() : base()
         { }
 
         /// <summary>Поле ввода фамилии владельца для поиска</summary>

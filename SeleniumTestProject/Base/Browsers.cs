@@ -23,7 +23,7 @@ namespace SeleniumTestProject.Base
                     break;
             }
             webDriver.Manage().Window.Maximize();
-            Goto(baseURL);
+            GoTo(baseURL);
 
 
         }
@@ -31,17 +31,25 @@ namespace SeleniumTestProject.Base
         {
             get { return webDriver.Title; }
         }
-        public static IWebDriver getDriver
+        public static IWebDriver GetDriver
         {
             get { return webDriver; }
         }
-        public static void Goto(string url)
+        public static void GoTo(string url)
         {
             webDriver.Url = url;
         }
         public static void Close()
         {
             webDriver.Quit();
+        }
+        public static string Url
+        {
+            get { return webDriver.Url; }            
+        }
+        public static void GoBack()
+        {
+            webDriver.Navigate().Back();
         }
     }
 }

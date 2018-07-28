@@ -56,7 +56,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="GistsTests.cs" />
+    <Compile Include="RestAPITests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -68,7 +68,6 @@
   <ItemGroup>
     <None Include="packages.config" />
     <None Include="Utils\App.config" />
-    <None Include="Utils\LoginPassword.json" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Properties\Resources.resx">

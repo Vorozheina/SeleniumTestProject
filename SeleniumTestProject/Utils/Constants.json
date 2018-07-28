@@ -1,20 +1,17 @@
 {
-	"owners" : [
+	"FirstName" : "Ivan",
+	"LastName" : "Ivanov",
+	"Address" : "15 Osenny Blvd.",
+	"City" : "Moscow",
+	"Telephone" : "4957771234",
+	"pets" : [
 	{
-		"FirstName" : "Ivan",
-		"LastName" : "Ivanov",
-		"Address" : "15 Osenny Blvd.",
-		"City" : "Moscow",
-		"Telephone" : "4957771234",
-		"pets" : [
+		"PetName" : "Tom",
+		"PetBirthDate" : "2015-04-04",
+		"PetType" : "cat",
+		"visits" : [
 		{
-			"PetName" : "Tom",
-			"PetBirthDate" : "2015-04-04",
-			"PetType" : "cat",
-			"visits" : [
-			{
-				"DescriptionOfVisit" : "Vaccination"
-			}]
+			"DescriptionOfVisit" : "Vaccination"
 		}]
-	}]
+	}]	
 }

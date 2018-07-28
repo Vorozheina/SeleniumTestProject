@@ -5,7 +5,7 @@ namespace SeleniumTestProject.Pages
 {
     class NewVisitPage : HomePage
     {
-        public NewVisitPage(IWebDriver driver) : base(driver)
+        public NewVisitPage() : base()
         { }
 
         public IWebElement FieldVisitDate => driver.FindElement(By.XPath("//*[@id='date']"));

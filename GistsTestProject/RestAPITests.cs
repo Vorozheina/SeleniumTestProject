@@ -7,7 +7,7 @@ using Newtonsoft.Json;
 
 namespace GistsTestProject
 {
-    public class GistsTests
+    public class RestAPITests
     {
         public RestClient restClient; 
         public RestRequest restRequest;
@@ -25,7 +25,7 @@ namespace GistsTestProject
         [Test]
         public void VerifyHttpStatusCode()
         {
-            // Проверить, что возвращается код ответа 200 (успех)
+            // Проверить, что возвращается код ответа 200 (успех) = OK
             Assert.AreEqual(HttpStatusCode.OK, restResponse.StatusCode);
 
         }
@@ -36,8 +36,8 @@ namespace GistsTestProject
             // Проверить, что заголовок полученного ответа content-type не пустой и выглядит как "application/json; charset=utf-8"
             Assert.Multiple(() =>
             {
-                Assert.IsNotEmpty(restResponse.ContentType);
-                Assert.AreEqual("application/json; charset=utf-8", restResponse.ContentType);
+                Assert.IsNotEmpty(restResponse.ContentType, "The 'content-type' part of the header is empty.");
+                Assert.AreEqual("application/json; charset=utf-8", restResponse.ContentType, "The 'content-type' part of the header has another description.");
             });
         }
 
@@ -46,7 +46,7 @@ namespace GistsTestProject
         {
             // Проверить, что на странице находятся данные о 10 пользователях
             IList<User> userList = JsonConvert.DeserializeObject<List<User>>(restResponse.Content);
-            Assert.AreEqual(10, userList.Count);
+            Assert.AreEqual(10, userList.Count, "The count of users is not equal to 10.");
         }
 
 

@@ -6,7 +6,7 @@ namespace SeleniumTestProject.Pages
 {
     class OwnerProfilePage : HomePage
     {
-        public OwnerProfilePage(IWebDriver driver) : base(driver)
+        public OwnerProfilePage() : base()
         { }
 
         public IWebElement FieldOwnerProfileName => driver.FindElement(By.XPath(".//th[text()='Name']/following-sibling::td/b"));

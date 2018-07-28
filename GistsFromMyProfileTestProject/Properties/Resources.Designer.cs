@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace GistsTestProject.Properties {
+namespace GistsFromMyProfileTestProject.Properties {
     using System;
     
     
@@ -39,7 +39,7 @@ namespace GistsTestProject.Properties {
         internal static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("GistsTestProject.Properties.Resources", typeof(Resources).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("GistsFromMyProfileTestProject.Properties.Resources", typeof(Resources).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
@@ -57,6 +57,16 @@ namespace GistsTestProject.Properties {
             }
             set {
                 resourceCulture = value;
+            }
+        }
+        
+        /// <summary>
+        ///   Поиск локализованного ресурса типа System.Byte[].
+        /// </summary>
+        internal static byte[] LoginPassword {
+            get {
+                object obj = ResourceManager.GetObject("LoginPassword", resourceCulture);
+                return ((byte[])(obj));
             }
         }
     }

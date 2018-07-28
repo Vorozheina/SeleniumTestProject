@@ -6,7 +6,7 @@ namespace SeleniumTestProject.Pages
 {
     class ResultOfSearchOwnerPage : HomePage
     {
-        public ResultOfSearchOwnerPage(IWebDriver driver) : base(driver)
+        public ResultOfSearchOwnerPage() : base()
         { }
 
         /// <summary>Таблица с результатом поиска владельца домашних животных</summary>
