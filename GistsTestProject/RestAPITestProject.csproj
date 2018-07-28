@@ -9,8 +9,8 @@
     <ProjectGuid>{9411EBF6-A1CA-457A-983D-54E7337A78F8}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>GistsTestProject</RootNamespace>
-    <AssemblyName>GistsTestProject</AssemblyName>
+    <RootNamespace>RestAPITestProject</RootNamespace>
+    <AssemblyName>RestAPITestProject</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <NuGetPackageImportStamp>

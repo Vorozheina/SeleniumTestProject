@@ -5,7 +5,7 @@ using System.Net;
 using RestSharp;
 using Newtonsoft.Json;
 
-namespace GistsTestProject
+namespace RestAPITestProject
 {
     public class RestAPITests
     {
