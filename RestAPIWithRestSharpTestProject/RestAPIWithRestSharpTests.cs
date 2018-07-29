@@ -4,13 +4,15 @@ using System.Configuration;
 using System.Net;
 using RestSharp;
 using Newtonsoft.Json;
-using RestAPITestProject.Base;
+using RestAPIWithRestSharpTestProject.Base;
+using RestAPIWithRestSharpTestProject.Helpers;
 
-namespace RestAPITestProject
+namespace RestAPIWithRestSharpTestProject
 {
-    public class RestAPITests
+    public class RestAPIWithRestSharpTests
     {
-        public RestClient restClient; 
+
+        public RestClient restClient;
         public RestRequest restRequest;
         public IRestResponse restResponse;
 
@@ -55,7 +57,13 @@ namespace RestAPITestProject
         [TearDown]
         public void CleanUp()
         {
-            
+
         }
+
+
+
+
+
+
     }
 }
