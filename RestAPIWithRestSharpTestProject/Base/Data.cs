@@ -14,18 +14,19 @@ namespace RestAPIWithRestSharpTestProject.Base
             string proxyFile = Properties.Resources.Proxy;
 
             return proxyFile.Split('\n');
+
         }
 
         public static Proxy GetProxy()
         {
             string[] dataStrings = ProxyDataStrings();
-
+                        
             Random rnd = new Random();
-            int i = rnd.Next(0, dataStrings.Length);
+            int i = rnd.Next(1, dataStrings.Length);
 
             char[] delimiterChars = { ' ', ':', '\t' };
             string[] parsedStrings = dataStrings[i].Split(delimiterChars);
-
+            
             Proxy proxy = new Proxy();
             proxy.Id = Convert.ToInt32(parsedStrings[0]);
             proxy.IP = parsedStrings[1];

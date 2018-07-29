@@ -20,7 +20,7 @@ namespace RestAPIWithRestSharpTestProject
         public void SetUp()
         {
             restClient = new RestClient(ConfigurationManager.AppSettings["URL"]);
-            restClient.Proxy = new WebProxy(Data.GetProxy().IP, Data.GetProxy().Port);
+            //restClient.Proxy = new WebProxy(Data.GetProxy().IP, Data.GetProxy().Port);
             restRequest = new RestRequest(Method.GET);
             restResponse = restClient.Execute(restRequest);
 

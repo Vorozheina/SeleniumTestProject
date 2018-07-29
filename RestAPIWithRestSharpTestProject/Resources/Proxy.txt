@@ -1,5 +1,4 @@
-
-#	Proxy	Country	City
+Id	Proxy	Country	City
 1	103.216.82.207:6667	 IN	Gujarat
 2	81.157.44.78:8080	 GB	Bath and North East Somerset
 3	193.19.132.65:8080	 UA	
