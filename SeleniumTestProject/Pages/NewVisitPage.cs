@@ -1,9 +1,9 @@
 ﻿using OpenQA.Selenium;
-
+using SeleniumTestProject.Base;
 
 namespace SeleniumTestProject.Pages
 {
-    class NewVisitPage : HomePage
+    class NewVisitPage : Page
     {
         public NewVisitPage() : base()
         { }

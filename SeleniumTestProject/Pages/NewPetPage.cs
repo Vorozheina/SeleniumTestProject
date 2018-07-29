@@ -1,11 +1,11 @@
 ﻿using System.Collections.Generic;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Support.UI;
-
+using SeleniumTestProject.Base;
 
 namespace SeleniumTestProject.Pages
 {
-    class NewPetPage : HomePage
+    class NewPetPage : Page
     {
         public NewPetPage() : base()
         { }

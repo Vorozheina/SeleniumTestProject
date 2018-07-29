@@ -168,7 +168,7 @@ namespace SeleniumTestProject
 
             // Проверяем, что запись о посещении ветеринара добавилась в таблицу питомцев и посещений
             Assert.IsNotNull(ownerProfilePage.FindDescriptionOfVisitInTable(PetName, Description), "The description was not added to 'Pets and Visits Table'");
-            
+                        
         }
 
         [TearDown]

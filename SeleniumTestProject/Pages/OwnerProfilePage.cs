@@ -1,10 +1,10 @@
 ﻿using OpenQA.Selenium;
 using System.Collections.Generic;
-
+using SeleniumTestProject.Base;
 
 namespace SeleniumTestProject.Pages
 {
-    class OwnerProfilePage : HomePage
+    class OwnerProfilePage : Page
     {
         public OwnerProfilePage() : base()
         { }

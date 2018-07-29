@@ -1,9 +1,9 @@
 ﻿using OpenQA.Selenium;
-
+using SeleniumTestProject.Base;
 
 namespace SeleniumTestProject.Pages
 {
-    class FindOwnersPage : HomePage
+    class FindOwnersPage : Page
     {
         public FindOwnersPage() : base()
         { }
