@@ -121,4 +121,10 @@
   <data name="LoginPassword" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Utils\LoginPassword.json;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
+  <data name="PatchedRequest" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Utils\PatchedRequest.json;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Request" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Utils\Request.json;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
 </root>

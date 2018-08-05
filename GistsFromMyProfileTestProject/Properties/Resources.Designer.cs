@@ -69,5 +69,25 @@ namespace GistsFromMyProfileTestProject.Properties {
                 return ((byte[])(obj));
             }
         }
+        
+        /// <summary>
+        ///   Поиск локализованного ресурса типа System.Byte[].
+        /// </summary>
+        internal static byte[] PatchedRequest {
+            get {
+                object obj = ResourceManager.GetObject("PatchedRequest", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Поиск локализованного ресурса типа System.Byte[].
+        /// </summary>
+        internal static byte[] Request {
+            get {
+                object obj = ResourceManager.GetObject("Request", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
     }
 }

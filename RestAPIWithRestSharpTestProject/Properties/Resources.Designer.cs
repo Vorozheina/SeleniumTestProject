@@ -59,28 +59,5 @@ namespace RestAPIWithRestSharpTestProject.Properties {
                 resourceCulture = value;
             }
         }
-        
-        /// <summary>
-        ///   Ищет локализованную строку, похожую на 
-        ///#	Proxy	Country	City
-        ///1	103.216.82.207:6667	 IN	Gujarat
-        ///2	81.157.44.78:8080	 GB	Bath and North East Somerset
-        ///3	193.19.132.65:8080	 UA	
-        ///4	47.91.224.252:80	 HK	
-        ///5	92.124.195.22:3128	 RU	Respublika Buryatiya
-        ///6	139.59.99.97:3128	 SG	Central Singapore Community Development Council
-        ///7	69.85.86.28:80	 US	California
-        ///8	181.143.73.34:53281	 CO	Bogota D.C.
-        ///9	159.203.174.2:3128	 US	New Jersey
-        ///10	183.89.88.73:8080	 TH	Bangkok
-        ///11	83.13.144.50:8080	 PL	West Pomerania
-        ///12	185.154.164.50:53281	 BE	
-        ///13	87.98.156. [остаток строки не уместился]&quot;;.
-        /// </summary>
-        internal static string Proxy {
-            get {
-                return ResourceManager.GetString("Proxy", resourceCulture);
-            }
-        }
     }
 }

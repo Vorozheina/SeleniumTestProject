@@ -42,18 +42,18 @@ namespace SeleniumTestProject
                         
             // Переходим на страницу поиска владельцев домашних животных
             var findOwnersPage = new FindOwnersPage();
-            findOwnersPage.BtnFindOwner.Click();
-            
+
             // Получаем список всех владельцев домашних животных
-            var resultOfSearchOwnerPage = new ResultOfSearchOwnerPage();
-            IWebElement webElementFindOwnersPage = resultOfSearchOwnerPage.TableFindOwnerResult;
+            var resultOfSearchOwnerPage = findOwnersPage.ClickFindOwnerButton();
             
             // Проверяем, что список владельцев появился
-            Assert.IsTrue(webElementFindOwnersPage.Displayed, "The 'Find Owners Page' is not displayed");
-            // Проверяем, что в нем содержится 10 записей
-            Assert.AreEqual(10, resultOfSearchOwnerPage.TableFindOwnerResultRows.Count - 1, "The count of rows is not equal to 10");
+            Assert.IsTrue(resultOfSearchOwnerPage.TableFindOwnerResult.Displayed, "The 'Find Owners Page' is not displayed");
             
-            resultOfSearchOwnerPage.UrlFindOwners.Click();
+            // Проверяем, что в нем содержится 10 записей
+            
+            Assert.AreEqual(10, resultOfSearchOwnerPage.TableFindOwnerResultRows.Count - 1, "The count of rows is not equal to 10");
+            /*
+            findOwnersPage.UrlFindOwners.Click();
             findOwnersPage.BtnAddNewOwner.Click();
             
             // Создаем профиль нового владельца домашних животных, заполняем поля формы для создания профиля
@@ -92,16 +92,17 @@ namespace SeleniumTestProject
             findOwnersPage.BtnFindOwner.Click();
 
             // Проверяем, что запись о новом владельце появилась
-            Assert.AreEqual(11, resultOfSearchOwnerPage.TableFindOwnerResultRows.Count - 1, "The count of rows is not equal to 11");
+            Assert.AreEqual(11, findOwnersPage.TableFindOwnerResultRows().Count - 1, "The count of rows is not equal to 11");
+            //Assert.AreEqual(11, resultOfSearchOwnerPage.TableFindOwnerResultRows.Count - 1, "The count of rows is not equal to 11");
 
             // Проверяем, что в таблице владельцев содержатся данные о новом владельце
-            Assert.IsTrue(resultOfSearchOwnerPage.PageSource.Contains(FullName), "The 'Find Owners Page' does not contain the Name data");
-            Assert.IsTrue(resultOfSearchOwnerPage.PageSource.Contains(Address), "The 'Find Owners Page' does not contain the Address data");
-            Assert.IsTrue(resultOfSearchOwnerPage.PageSource.Contains(City), "The 'Find Owners Page' does not contain the City data");
-            Assert.IsTrue(resultOfSearchOwnerPage.PageSource.Contains(Telephone), "The 'Find Owners Page' does not contain the Telephone data");
+            Assert.IsTrue(findOwnersPage.PageSource.Contains(FullName), "The 'Find Owners Page' does not contain the Name data");
+            Assert.IsTrue(findOwnersPage.PageSource.Contains(Address), "The 'Find Owners Page' does not contain the Address data");
+            Assert.IsTrue(findOwnersPage.PageSource.Contains(City), "The 'Find Owners Page' does not contain the City data");
+            Assert.IsTrue(findOwnersPage.PageSource.Contains(Telephone), "The 'Find Owners Page' does not contain the Telephone data");
 
             // Переходим в профиль выбранного владельца домашних животных
-            resultOfSearchOwnerPage.SelectProfileByName(FullName).Click();
+            findOwnersPage.SelectProfileByName(FullName).Click();
             
             // Переходим в форму добавления записи о домашнем животном
             ownerProfilePage.BtnAddNewPet.Click();
@@ -168,7 +169,7 @@ namespace SeleniumTestProject
 
             // Проверяем, что запись о посещении ветеринара добавилась в таблицу питомцев и посещений
             Assert.IsNotNull(ownerProfilePage.FindDescriptionOfVisitInTable(PetName, Description), "The description was not added to 'Pets and Visits Table'");
-                        
+              */          
         }
 
         [TearDown]
