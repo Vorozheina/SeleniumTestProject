@@ -52,7 +52,7 @@ namespace SeleniumTestProject
             // Проверяем, что в нем содержится 10 записей
             
             Assert.AreEqual(10, resultOfSearchOwnerPage.TableFindOwnerResultRows.Count - 1, "The count of rows is not equal to 10");
-            /*
+            
             findOwnersPage.UrlFindOwners.Click();
             findOwnersPage.BtnAddNewOwner.Click();
             
@@ -90,7 +90,7 @@ namespace SeleniumTestProject
             // Переходим на страницу поиска владельцев домшаних животных
             ownerProfilePage.UrlFindOwners.Click();
             findOwnersPage.BtnFindOwner.Click();
-
+            /*
             // Проверяем, что запись о новом владельце появилась
             Assert.AreEqual(11, findOwnersPage.TableFindOwnerResultRows().Count - 1, "The count of rows is not equal to 11");
             //Assert.AreEqual(11, resultOfSearchOwnerPage.TableFindOwnerResultRows.Count - 1, "The count of rows is not equal to 11");

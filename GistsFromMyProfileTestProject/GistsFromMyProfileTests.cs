@@ -78,7 +78,7 @@ namespace GistsFromMyProfileTestProject
             restRequest.AddHeader("content-length", "0");
             restResponse = restClient.Execute(restRequest);
 
-            Assert.AreEqual(HttpStatusCode.NoContent, restResponse.StatusCode, , "The gist is not starred");
+            Assert.AreEqual(HttpStatusCode.NoContent, restResponse.StatusCode, "The gist is not starred");
         }
 
         [Test]
