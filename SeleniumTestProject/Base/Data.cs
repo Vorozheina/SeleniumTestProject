@@ -17,7 +17,6 @@ namespace SeleniumTestProject.Base
         {
             byte[] jsonBytes = Properties.Resources.Constants;
             string stringJsonConstants = Encoding.UTF8.GetString(jsonBytes);
-            JObject jsonConstants = JObject.Parse(stringJsonConstants);
             Owner owner = JsonConvert.DeserializeObject<Owner>(stringJsonConstants);
             return owner;
         }
