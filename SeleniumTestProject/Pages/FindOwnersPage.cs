@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 namespace SeleniumTestProject.Pages
 {
-    class FindOwnersPage : Page
+    public class FindOwnersPage : Page
     {
         public FindOwnersPage() : base()
         { }
@@ -25,6 +25,10 @@ namespace SeleniumTestProject.Pages
             return new ResultOfSearchOwnerPage();
         }
 
-        
+        public NewOwnerPage ClickAddOwnerButton()
+        {
+            BtnAddNewOwner.Click();
+            return new NewOwnerPage();
+        }
     }
 }

@@ -3,7 +3,7 @@ using SeleniumTestProject.Base;
 
 namespace SeleniumTestProject.Pages
 {
-    class NewOwnerPage : Page
+    public class NewOwnerPage : Page
     {
         public NewOwnerPage() : base()
         { }
@@ -25,6 +25,12 @@ namespace SeleniumTestProject.Pages
 
         /// <summary>Кнопка для добавления владельца домашнего животного</summary>
         public IWebElement BtnAddOwner => driver.FindElement(By.CssSelector("button[type='submit'"));
+
+        public OwnerProfilePage ClickBtnAddOwner()
+        {
+            BtnAddOwner.Click();
+            return new OwnerProfilePage();
+        }
         
     }
 }

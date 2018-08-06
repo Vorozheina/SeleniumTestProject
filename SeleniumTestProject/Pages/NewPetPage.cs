@@ -5,7 +5,7 @@ using SeleniumTestProject.Base;
 
 namespace SeleniumTestProject.Pages
 {
-    class NewPetPage : Page
+    public class NewPetPage : Page
     {
         public NewPetPage() : base()
         { }

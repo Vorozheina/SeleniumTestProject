@@ -37,12 +37,15 @@ namespace GistsFromMyProfileTestProject
             restRequest.AddParameter("application/json", RequestBody, ParameterType.RequestBody);
             restResponse = restClient.Execute(restRequest);
 
+            gist_id = Data.GetGistId(restResponse.Content);
+
         }
 
         [Test]
         // Проверяем, удалось ли создать гист; ответ 201 (Created)
         public void Gist_Post()
-        {
+        {           
+
             Assert.AreEqual(HttpStatusCode.Created, restResponse.StatusCode, "The gist is not created");            
         }
 
@@ -50,8 +53,6 @@ namespace GistsFromMyProfileTestProject
         // Редактируем гист и проверяем, что его удалось отредактировать; ответ 200 (OK)
         public void Gist_Patch()
         {
-            gist_id = Data.GetGistId(restResponse.Content);
-
             restClient = new RestClient(ConfigurationManager.AppSettings["URL"] + "/" + gist_id);
             restClient.Authenticator = new HttpBasicAuthenticator(Data.GetAuthentification().Login, Data.GetAuthentification().Password);
             restRequest = new RestRequest(Method.PATCH);
@@ -67,8 +68,6 @@ namespace GistsFromMyProfileTestProject
         // Отмечаем гист "избранным" и проверяем, что это удалось; ответ 204 (No Content)
         public void Gist_Put()
         {
-            gist_id = Data.GetGistId(restResponse.Content);
-
             restClient = new RestClient(ConfigurationManager.AppSettings["URL"] + "/" + gist_id + "/star");
             restClient.Authenticator = new HttpBasicAuthenticator(Data.GetAuthentification().Login, Data.GetAuthentification().Password);
             restRequest = new RestRequest(Method.PUT);
@@ -82,8 +81,6 @@ namespace GistsFromMyProfileTestProject
         // Удаляем гист и проверяем, что это удалось; ответ 204 (No Content)
         public void Gist_Delete()
         {
-            gist_id = Data.GetGistId(restResponse.Content);
-
             restClient = new RestClient(ConfigurationManager.AppSettings["URL"] + "/" + gist_id);
             restClient.Authenticator = new HttpBasicAuthenticator(Data.GetAuthentification().Login, Data.GetAuthentification().Password);
             restRequest = new RestRequest(Method.DELETE);

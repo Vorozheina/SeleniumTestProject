@@ -4,7 +4,7 @@ using SeleniumTestProject.Base;
 
 namespace SeleniumTestProject.Pages
 {
-    class OwnerProfilePage : Page
+    public class OwnerProfilePage : Page
     {
         public OwnerProfilePage() : base()
         { }
@@ -22,6 +22,12 @@ namespace SeleniumTestProject.Pages
         public IWebElement BtnEditOwner => driver.FindElement(By.LinkText("Edit Owner"));
 
         public IWebElement BtnAddNewPet => driver.FindElement(By.LinkText("Add New Pet"));
+
+        public NewPetPage ClickAddNewPetButton()
+        {
+            BtnAddNewPet.Click();
+            return new NewPetPage();
+        }
 
         public IWebElement FindPetDataInTable(string PetName, string PetBirthDate = "", string PetType = "")
         {
@@ -46,6 +52,12 @@ namespace SeleniumTestProject.Pages
             return webElement.FindElement(By.LinkText("Edit Pet"));
         }
 
+        public EditPetPage ClickLnkEditPet(string PetName)
+        {
+            LnkEditPet(PetName).Click();
+            return new EditPetPage();
+        }
+
         public IWebElement GetTypeOfPet(string PetName)
         {
             IWebElement webElement = FindPetDataInTable(PetName);
@@ -56,6 +68,12 @@ namespace SeleniumTestProject.Pages
         {
             IWebElement webElement = FindPetDataInTable(PetName); ;
             return webElement.FindElement(By.LinkText("Add Visit"));
+        }
+
+        public NewVisitPage ClickLnkAddVisit(string PetName)
+        {
+            LnkAddVisit(PetName).Click();
+            return new NewVisitPage();
         }
 
         public IList<IWebElement> TableOfVisitsRows(string PetName)

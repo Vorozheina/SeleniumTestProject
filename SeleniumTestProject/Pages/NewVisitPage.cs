@@ -3,7 +3,7 @@ using SeleniumTestProject.Base;
 
 namespace SeleniumTestProject.Pages
 {
-    class NewVisitPage : Page
+    public class NewVisitPage : Page
     {
         public NewVisitPage() : base()
         { }

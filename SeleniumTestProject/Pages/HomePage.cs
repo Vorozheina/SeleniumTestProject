@@ -4,7 +4,7 @@ using SeleniumTestProject.Base;
 
 namespace SeleniumTestProject.Pages
 {
-    class HomePage : Page
+    public class HomePage : Page
     {
         public HomePage() : base()
         { }

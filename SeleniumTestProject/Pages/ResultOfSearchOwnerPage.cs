@@ -4,7 +4,7 @@ using SeleniumTestProject.Base;
 
 namespace SeleniumTestProject.Pages
 {
-    class ResultOfSearchOwnerPage : Page
+    public class ResultOfSearchOwnerPage : Page
     {
         public ResultOfSearchOwnerPage() : base()
         { }

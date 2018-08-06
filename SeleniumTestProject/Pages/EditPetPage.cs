@@ -3,7 +3,7 @@
 
 namespace SeleniumTestProject.Pages
 {
-    class EditPetPage : NewPetPage
+    public class EditPetPage : NewPetPage
     {
         public EditPetPage() : base()
         { }
