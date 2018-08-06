@@ -23,6 +23,7 @@ namespace GistsFromMyProfileTestProject
         public RestRequest restRequest;
         public IRestResponse restResponse;
         public string RequestBody;
+        public string gist_id;
         
         [SetUp]
         // Создаем гист для дальнейших проверок
@@ -49,10 +50,8 @@ namespace GistsFromMyProfileTestProject
         // Редактируем гист и проверяем, что его удалось отредактировать; ответ 200 (OK)
         public void Gist_Patch()
         {
-            Response response = new Response();            
-            response = JsonConvert.DeserializeObject<Response>(restResponse.Content);
-            string gist_id = response.Id;
-                        
+            gist_id = Data.GetGistId(restResponse.Content);
+
             restClient = new RestClient(ConfigurationManager.AppSettings["URL"] + "/" + gist_id);
             restClient.Authenticator = new HttpBasicAuthenticator(Data.GetAuthentification().Login, Data.GetAuthentification().Password);
             restRequest = new RestRequest(Method.PATCH);
@@ -68,9 +67,7 @@ namespace GistsFromMyProfileTestProject
         // Отмечаем гист "избранным" и проверяем, что это удалось; ответ 204 (No Content)
         public void Gist_Put()
         {
-            Response response = new Response();
-            response = JsonConvert.DeserializeObject<Response>(restResponse.Content);
-            string gist_id = response.Id;
+            gist_id = Data.GetGistId(restResponse.Content);
 
             restClient = new RestClient(ConfigurationManager.AppSettings["URL"] + "/" + gist_id + "/star");
             restClient.Authenticator = new HttpBasicAuthenticator(Data.GetAuthentification().Login, Data.GetAuthentification().Password);
@@ -85,9 +82,7 @@ namespace GistsFromMyProfileTestProject
         // Удаляем гист и проверяем, что это удалось; ответ 204 (No Content)
         public void Gist_Delete()
         {
-            Response response = new Response();
-            response = JsonConvert.DeserializeObject<Response>(restResponse.Content);
-            string gist_id = response.Id;
+            gist_id = Data.GetGistId(restResponse.Content);
 
             restClient = new RestClient(ConfigurationManager.AppSettings["URL"] + "/" + gist_id);
             restClient.Authenticator = new HttpBasicAuthenticator(Data.GetAuthentification().Login, Data.GetAuthentification().Password);
@@ -99,6 +94,11 @@ namespace GistsFromMyProfileTestProject
 
         [TearDown]
         public void TearDown()
-        {}
+        {
+            restClient = new RestClient(ConfigurationManager.AppSettings["URL"] + "/" + gist_id);
+            restClient.Authenticator = new HttpBasicAuthenticator(Data.GetAuthentification().Login, Data.GetAuthentification().Password);
+            restRequest = new RestRequest(Method.DELETE);
+            restResponse = restClient.Execute(restRequest);
+        }
     }
 }

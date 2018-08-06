@@ -90,9 +90,9 @@ namespace SeleniumTestProject
             // Переходим на страницу поиска владельцев домшаних животных
             ownerProfilePage.UrlFindOwners.Click();
             findOwnersPage.BtnFindOwner.Click();
-            /*
+            
             // Проверяем, что запись о новом владельце появилась
-            Assert.AreEqual(11, findOwnersPage.TableFindOwnerResultRows().Count - 1, "The count of rows is not equal to 11");
+            Assert.AreEqual(11, resultOfSearchOwnerPage.TableFindOwnerResultRows.Count - 1, "The count of rows is not equal to 11");
             //Assert.AreEqual(11, resultOfSearchOwnerPage.TableFindOwnerResultRows.Count - 1, "The count of rows is not equal to 11");
 
             // Проверяем, что в таблице владельцев содержатся данные о новом владельце
@@ -100,7 +100,7 @@ namespace SeleniumTestProject
             Assert.IsTrue(findOwnersPage.PageSource.Contains(Address), "The 'Find Owners Page' does not contain the Address data");
             Assert.IsTrue(findOwnersPage.PageSource.Contains(City), "The 'Find Owners Page' does not contain the City data");
             Assert.IsTrue(findOwnersPage.PageSource.Contains(Telephone), "The 'Find Owners Page' does not contain the Telephone data");
-
+            /*
             // Переходим в профиль выбранного владельца домашних животных
             findOwnersPage.SelectProfileByName(FullName).Click();
             

@@ -26,6 +26,14 @@ namespace GistsFromMyProfileTestProject.Base
             string jsonString = Encoding.UTF8.GetString(jsonBytes);
             Gist gist = JsonConvert.DeserializeObject<Gist>(jsonString);
             return gist;
-        }                    
+        }
+        
+        public static string GetGistId(string responseContent)
+        {
+            Response response = new Response();
+            response = JsonConvert.DeserializeObject<Response>(responseContent);
+            string gist_id = response.Id;
+            return gist_id;
+        }
     }
 }
